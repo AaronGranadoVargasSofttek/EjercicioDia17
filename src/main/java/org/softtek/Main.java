@@ -14,29 +14,31 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String eleccionUsuario = Utilidades.leerTexto(Menu.iniciarElecciones());
+        int eleccionUsuario = 0;
         List<Empleado> empleados = crearListaEmpleados();
         ObjectMapper mapper = new ObjectMapper();
 
-
+        while (eleccionUsuario != 5){
+            eleccionUsuario = Utilidades.leerEntero(Menu.iniciarElecciones());
         switch (eleccionUsuario) {
-            case "1":
+            case 1:
                 Menu.imprimirDirectorio(empleados);
                 break;
-            case "2":
+            case 2:
                 String nombre = Utilidades.leerTexto("Introduce el nombre a buscar");
                 Menu.buscarUsuario(empleados, nombre);
                 break;
-            case "3":
+            case 3:
                 JSONController.guardarDirectorio(mapper,empleados);
                 break;
-            case "4":
+            case 4:
                 JSONController.leerDirectorio();
                 break;
-            case "5":
+            case 5:
                 System.out.println("Saliendo...");
                 break;
         }
+    }
 
     }
 

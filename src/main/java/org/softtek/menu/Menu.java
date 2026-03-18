@@ -22,7 +22,8 @@ public class Menu {
         return ("1- Imprimir Directorio" +
                 "2- Buscar Usuario " +
                 "3- Guardar Directorio " +
-                "4- Leer Directorio");
+                "4- Leer Directorio"+
+                "5- Salir");
     }
 
     public static void imprimirDirectorio(List<Empleado> empleados)
