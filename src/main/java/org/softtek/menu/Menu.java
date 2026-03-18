@@ -4,16 +4,13 @@ import org.softtek.model.Empleado;
 import tools.jackson.databind.ObjectMapper;
 
 import java.io.PrintWriter;
-import java.util.Scanner;
+import java.util.*;
 
 import static org.softtek.model.Utilidades.getEmpleados;
-
-import java.util.List;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.stream;
@@ -51,10 +48,12 @@ public class Menu {
 
     public static void buscarUsuario(List<Empleado> empleados, String nombreBuscado)
     {
-        Empleado empleado = empleados.stream()
-                .filter(e -> e.getNombre().equalsIgnoreCase(nombreBuscado))
-                .findFirst();
-        System.out.println(empleado.nombre()+" "+ empleado.apellido());
+        empleados.stream()
+                .filter(e -> e.nombre().equalsIgnoreCase(nombreBuscado))
+                .findFirst()
+                .ifPresent(empleado ->
+                        System.out.println(empleado.nombre() + " " + empleado.apellido()));
+
     }
 
     public static void guardarDirectorio()
