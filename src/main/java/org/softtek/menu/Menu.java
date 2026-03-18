@@ -1,8 +1,22 @@
 package org.softtek.menu;
 
 import org.softtek.model.Empleado;
+import tools.jackson.databind.ObjectMapper;
+
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+import static org.softtek.model.Utilidades.getEmpleados;
 
 import java.util.List;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Arrays.stream;
 
 public class Menu {
 
@@ -20,22 +34,6 @@ public class Menu {
         {
             System.out.println(e.nombre()+ " "+e.apellido()+"\n---\n");
         }
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Arrays.stream;
-
-public class Menu {
-
-    public static String iniciarElecciones() {
-        return ("Directorio Corporativo <" + leerVersion() + ">. Elija una opcion:" +
-                "\n1- Imprimir Directorio" +
-                "\n2- Buscar Usuario " +
-                "\n3- Guardar Directorio " +
-                "\n4- Leer Directorio");
     }
 
     public static String leerVersion() {
@@ -51,11 +49,6 @@ public class Menu {
         }
     }
 
-
-    public static void imprimirDirectorio() {
-
-    }
-
     public static void buscarUsuario(List<Empleado> empleados, String nombreBuscado)
     {
         Empleado empleado = empleados.stream()
@@ -67,11 +60,19 @@ public class Menu {
     public static void guardarDirectorio()
     {
 
-    }
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            PrintWriter writejson = new PrintWriter("directorio.json");
 
-    public static void leerDirectorio()
-    {
+            String json = mapper.writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(getEmpleados());
 
+            writejson.write(json);
+            writejson.close();
+            System.out.println("Guardado correctamente");
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
     }
 
 }
