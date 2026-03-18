@@ -1,12 +1,17 @@
 package org.softtek.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+
 
 
 public class Utilidades {
 
 
     private static final Scanner SC = new Scanner(System.in);
+    private List<Empleado> empleados = new ArrayList<>();
 
     public static String leerTexto(String mensaje) {
         String texto;
@@ -19,7 +24,24 @@ public class Utilidades {
         return texto;
     }
 
+    public void buscarUsuario(String nombre){
 
+        boolean encontrado = false;
+
+        for(Empleado e : empleados){
+            if(e.nombre().equalsIgnoreCase(nombre)){
+                System.out.println("Usuario encontrado: " + e);
+                encontrado = true;
+                break;
+            }
+        }
+        if(!encontrado)
+        {
+            System.out.println("Usuario no encontrado.");
+        }
+
+    }
+    
     public static int leerEntero(String mensaje) {
         while (true) {
             System.out.print(mensaje + ": ");
