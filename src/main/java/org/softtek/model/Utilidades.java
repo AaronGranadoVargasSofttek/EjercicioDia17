@@ -11,7 +11,12 @@ public class Utilidades {
 
 
     private static final Scanner SC = new Scanner(System.in);
-    private List<Empleado> empleados = new ArrayList<>();
+    private static final List<Empleado> empleados = new ArrayList<>();
+
+
+    public static List<Empleado> getEmpleados() {
+        return empleados;
+    }
 
     public static String leerTexto(String mensaje) {
         String texto;
@@ -28,7 +33,7 @@ public class Utilidades {
 
         boolean encontrado = false;
 
-        for(Empleado e : empleados){
+        for(Empleado e : empleados){ // No cambio aquí, pero en Menu usaré el getter
             if(e.nombre().equalsIgnoreCase(nombre)){
                 System.out.println("Usuario encontrado: " + e);
                 encontrado = true;
@@ -64,6 +69,8 @@ public class Utilidades {
             }
         }
     }
+
+    
 
     public static void cerrar() {
         SC.close();
