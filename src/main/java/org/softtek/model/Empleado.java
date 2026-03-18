@@ -7,6 +7,4 @@ public record Empleado(String nombre, String apellido, LocalDateTime fechaAlta,
                        List<String> telefonoContacto,
                        Empleado supervisor) {
 
-
-
 }

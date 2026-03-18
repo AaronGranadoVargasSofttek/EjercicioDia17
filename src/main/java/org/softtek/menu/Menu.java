@@ -10,19 +10,14 @@ public class Menu {
     }
 
     public static void imprimirDirectorio() {
-
     }
 
     public static void buscarUsuario() {
-
     }
 
     public static void guardarDirectorio() {
-
     }
 
     public static void leerDirectorio() {
-
     }
-
 }
