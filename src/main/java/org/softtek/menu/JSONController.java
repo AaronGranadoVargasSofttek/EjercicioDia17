@@ -12,19 +12,19 @@ public class JSONController {
 
     public static void guardarDirectorio(ObjectMapper mapper, List<Empleado> empleados) {
 
-        for (Empleado e : empleados) {
+        List<Empleado> empleadosValidos = empleados.stream()
+                .filter(e -> e.nombre() != null
+                        && e.apellido() != null
+                        && !e.telefonoContacto().isEmpty()
+                        && e.fechaAlta() != null
+                        && e.supervisor() != null)
+                .toList();
 
-            if (e.nombre() != null && e.apellido() != null
-                    && !e.telefonoContacto().isEmpty()
-                    && e.fechaAlta() != null
-                    && e.supervisor() != null){
-                mapper.writeValue(new File("directorio.json"), e);
-            }
-            else{
-                System.out.println(e);
-            }
+        try {
+            mapper.writeValue(new File("directorio.json"), empleadosValidos);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
 
@@ -38,7 +38,7 @@ public class JSONController {
             }
 
         }catch (Exception e){
-            System.out.println("Error al leer el directorio");
+            e.printStackTrace();
         }
     }
 
