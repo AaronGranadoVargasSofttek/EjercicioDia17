@@ -1,4 +1,4 @@
-package org.example.Model;
+package org.softtek.model;
 
 import java.util.Scanner;
 
@@ -6,33 +6,25 @@ import java.util.Scanner;
 public class Utilidades {
 
 
-    private final Scanner sc;
+    private static final Scanner SC = new Scanner(System.in);
 
-
-    public Utilidades() {
-        sc = new Scanner(System.in);
-    }
-
-
-    public String leerTexto(String mensaje) {
+    public static String leerTexto(String mensaje) {
         String texto;
         do {
             System.out.print(mensaje + ": ");
-            texto = sc.nextLine().trim();
-            if (texto.isEmpty()) {
+            texto = SC.nextLine().trim();
+            if (texto.isEmpty())
                 System.out.println("Error: el texto no puede estar vacío. Inténtalo de nuevo.");
-            }
         } while (texto.isEmpty());
         return texto;
     }
 
 
-
-    public int leerEntero(String mensaje) {
+    public static int leerEntero(String mensaje) {
         while (true) {
             System.out.print(mensaje + ": ");
             try {
-                return Integer.parseInt(sc.nextLine().trim());
+                return Integer.parseInt(SC.nextLine().trim());
             } catch (NumberFormatException e) {
                 System.out.println("Error: introduce un número válido.");
             }
@@ -40,18 +32,18 @@ public class Utilidades {
     }
 
 
-    public double leerDouble(String mensaje) {
+    public static double leerDouble(String mensaje) {
         while (true) {
             System.out.print(mensaje + ": ");
             try {
-                return Double.parseDouble(sc.nextLine().trim());
+                return Double.parseDouble(SC.nextLine().trim());
             } catch (NumberFormatException e) {
                 System.out.println("Error: introduce un número decimal válido.");
             }
         }
     }
-    
-    public void cerrar() {
-        sc.close();
+
+    public static void cerrar() {
+        SC.close();
     }
 }
