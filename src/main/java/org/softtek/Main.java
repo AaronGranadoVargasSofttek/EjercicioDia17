@@ -1,8 +1,10 @@
 package org.softtek;
 
+import org.softtek.menu.JSONController;
 import org.softtek.menu.Menu;
 import org.softtek.model.Empleado;
 import org.softtek.model.Utilidades;
+import tools.jackson.databind.ObjectMapper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,6 +16,7 @@ public class Main {
     public static void main(String[] args) {
         String eleccionUsuario = Utilidades.leerTexto(Menu.iniciarElecciones());
         List<Empleado> empleados = crearListaEmpleados();
+        ObjectMapper mapper = new ObjectMapper();
 
         switch (eleccionUsuario) {
             case "1":
@@ -22,9 +25,9 @@ public class Main {
                 String nombre = Utilidades.leerTexto("Introduce el nombre a buscar");
                 Menu.buscarUsuario(empleados, nombre);
             case "3":
-                Menu.guardarDirectorio();
+                JSONController.guardarDirectorio(mapper,empleados);
             case "4":
-                Menu.leerDirectorio();
+                JSONController.leerDirectorio();
         }
     }
 
