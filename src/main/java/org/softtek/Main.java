@@ -19,7 +19,8 @@ public class Main {
             case "1":
                 Menu.imprimirDirectorio(empleados);
             case "2":
-                Menu.buscarUsuario(empleados, pedirNombre());
+                String nombre = Utilidades.leerTexto("Introduce el nombre a buscar");
+                Menu.buscarUsuario(empleados, nombre);
             case "3":
                 Menu.guardarDirectorio();
             case "4":
